@@ -155,7 +155,7 @@ class MyArrayList<T> {
      *
      * @param minCapacity минимальная емкость, которую должен иметь внутренний массив
      */
-    private void ensureCapacity(int minCapacity) {
+    protected void ensureCapacity(int minCapacity) {
         if (minCapacity > elements.length) {
             int newCapacity = elements.length * 2;
             if (newCapacity < minCapacity) {

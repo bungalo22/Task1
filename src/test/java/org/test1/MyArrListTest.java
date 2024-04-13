@@ -5,8 +5,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Comparator;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
+
 
 public class MyArrListTest {
 
@@ -44,6 +44,26 @@ public class MyArrListTest {
             assertEquals("b", list.get(1));
             assertEquals("c", list.get(2));
             assertEquals("d", list.get(3));
+        }
+        @Test
+        void ensureCapacityTest() {
+            MyArrayList<Integer> list = new MyArrayList<>(5); // Создаем список с начальной емкостью 5
+
+            // Проверяем, что емкость списка увеличивается при необходимости
+            list.ensureCapacity(10);
+            assertTrue(list.elements.length >= 10);
+
+            // Проверяем, что емкость списка не изменяется, если новая емкость меньше текущей
+            list.ensureCapacity(8);
+            assertEquals(10, list.elements.length);
+
+            // Проверяем, что содержимое списка остается неизменным после увеличения емкости
+            list.add(1);
+            list.add(2);
+            list.ensureCapacity(15);
+            assertEquals(2, list.size());
+            assertEquals(1, list.get(0));
+            assertEquals(2, list.get(1));
         }
 
         @Test
